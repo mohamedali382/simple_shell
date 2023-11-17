@@ -27,7 +27,7 @@ int main(void)
 
 		if (_strcmp("env", line) == 0)
 		{
-			print_env();
+			printe();
 			continue;
 		}
 
