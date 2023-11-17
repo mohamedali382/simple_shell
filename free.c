@@ -27,3 +27,44 @@ void *_realloc(unsigned int xim, unsigned int size)
 	}
 	return (ptr);
 }
+
+/**
+ * _strcat - concatenate two srtings
+ * @dest: string 1
+ * @src: string 2
+ * Return: the concatenated string
+ */
+char *_strcat(char *dest, char *src)
+{
+	int i, j;
+
+	i = 0;
+	j = 0;
+	while (dest[i])
+	{
+		i++;
+	}
+	while (src[j])
+	{
+		dest[i] = src[j];
+		i++;
+		j++;
+	}
+	dest[i] = '\0';
+	return (dest);
+}
+/**
+ * _strlen - calculate the length of a string
+ * @s: string we want to calculate its length
+ * Return: length of the string
+ */
+int _strlen(char *s)
+{
+	int i;
+
+	for (i = 0; s[i] != '\0';)
+	{
+		i++;
+	}
+	return (i);
+}
