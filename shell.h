@@ -35,6 +35,7 @@ void freeArgs(char **ag);
 size_t _strlen(const char *ag);
 struct linkp *freepath(struct linkp *path);
 int _putchar(char c);
+int _strcmp(char *s1, char *s2);
 char *_strdup(const char *str);
 char *_strcpy(char *path, const char *src);
 #endif

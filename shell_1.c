@@ -36,15 +36,14 @@ int main(void)
 		ag = NULL;
 		envirs = NULL;
 		if (isatty(STDIN_FILENO))
-		{
-			_putchar(' ');
-			_putchar(' ');
-		}
+			printf("$ ");
 		len = getline(&line, &size, stdin);
-		if (line[0] == '\n')
-			continue;
-		if (line[len - 1] == '\n')
-			(line[len - 1]) = '\0';
+		if (len == -1 || _strcmp("exit\n", line) == 0)
+		{
+			free(line);
+			break;
+		}
+		line[len - 1] = '\0';
 		_CTD(len, line);
 		ag = _strtok(line, " ");
 		envirs = getenv("PATH");
