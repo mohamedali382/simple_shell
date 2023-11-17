@@ -1,12 +1,12 @@
 #include "shell.h"
 
 /**
- * _execute - execute command path
- * @args: array of arguments
- * Return: exit status
+ * exec - execute command path
+ * @ag: array of arguments
+ * Return: st
  */
 
-int _execute(char **args)
+int exec(char **ag)
 {
 	int id = fork();
 	int st;
@@ -14,7 +14,7 @@ int _execute(char **args)
 	if (id == 0)
 	{
 		/*execute the command*/
-		if (execve(args[0], args, environ) == -1)
+		if (execve(ag[0], ag, environ) == -1)
 		{
 			perror("Error");
 		}

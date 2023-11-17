@@ -8,43 +8,43 @@
 
 char *search_path(char *cmd)
 {
-	int i = 0, path_len = 0;
+	int j = 0, len = 0;
 	char *path = _getenv("PATH");
-	char *path_copy, *path_concat = NULL;
-	char **path_split;
+	char *copy, *conc = NULL;
+	char **path_strtok;
 	struct stat st;
 
 	if (stat(cmd, &st) == 0)
 		return (cmd);
 
-	path_copy = malloc(_strlen(path) + 1);
+	copy = malloc(_strlen(path) + 1);
 
-	path_copy = _strcpy(path_copy, path);
-	path_split = _split(path_copy, ":");
+	copy = _strcpy(copy, path);
+	path_strtok = _split(copy, ":");
 
-	while (path_split[i])
+	while (path_strtok[j])
 	{
-		path_len = _strlen(path_split[i]);
+		len = _strlen(path_strtok[j]);
 
-		if (path_split[i][path_len - 1] != '/')
-			path_concat = _strcat(path_split[i], "/");
+		if (path_strtok[j][len - 1] != '/')
+			conc = _strcat(path_strtok[j], "/");
 
-		path_concat = _strcat(path_split[i], cmd);
+		conc = _strcat(path_strtok[j], cmd);
 
-		if (stat(path_concat, &st) == 0)
+		if (stat(conc, &st) == 0)
 			break;
 
-		i++;
+		j++;
 	}
 
-	free(path_copy);
+	free(copy);
 
-	if (!path_split[i])
+	if (!path_strtok[j])
 	{
-		free(path_split);
+		free(path_strtok);
 		return (NULL);
 	}
 
-	free(path_split);
-	return (path_concat);
+	free(path_strtok);
+	return (conc);
 }

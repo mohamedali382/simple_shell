@@ -7,44 +7,44 @@
 
 int main(void)
 {
-	char *buffer = NULL, **args;
-	int exit_status = 0;
-	size_t read_size = 0;
-	ssize_t buffer_size = 0;
+	char *line = NULL, **ags;
+	int ex = 0;
+	size_t size = 0;
+	ssize_t buffer = 0;
 
 	while (1)
 	{
 		if (isatty(STDIN_FILENO))
 			printf("$ ");
 
-		buffer_size = getline(&buffer, &read_size, stdin);
-		if (buffer_size == -1 || _strcmp("exit\n", buffer) == 0)
+		buffer = getline(&line, &size, stdin);
+		if (buffer == -1 || _strcmp("exit\n", line) == 0)
 		{
-			free(buffer);
+			free(line);
 			break;
 		}
-		buffer[buffer_size - 1] = '\0';
+		line[buffer - 1] = '\0';
 
-		if (_strcmp("env", buffer) == 0)
+		if (_strcmp("env", line) == 0)
 		{
 			print_env();
 			continue;
 		}
 
-		if (empty_line(buffer) == 1)
+		if (empty_line(line) == 1)
 		{
-			exit_status = 0;
+			ex = 0;
 			continue;
 		}
 
-		args = _split(buffer, " ");
-		args[0] = search_path(args[0]);
+		ags = _split(line, " ");
+		ags[0] = search_path(ags[0]);
 
-		if (args[0] != NULL)
-			exit_status = _execute(args);
+		if (ags[0] != NULL)
+			ex = exec(ags);
 		else
 			perror("Error");
-		free(args);
+		free(ags);
 	}
-	return (exit_status);
+	return (ex);
 }

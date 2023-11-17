@@ -1,26 +1,26 @@
 #include "shell.h"
 
 /**
- * _calloc - allocates memory for an array, using malloc
- * @member: array to which memory will be allocated
+ * _realloc - allocates memory for an array, using malloc
+ * @xim: array to which memory will be allocated
  * @size: size of array
  * Return: pointer or NULL
  */
 
-void *_calloc(unsigned int member, unsigned int size)
+void *_realloc(unsigned int xim, unsigned int size)
 {
 	char *ptr = NULL;
 	unsigned int i = 0;
 
-	if (member == 0 || size == 0)
+	if (xim == 0 || size == 0)
 	{
 		return (NULL);
 	}
-	ptr = malloc(member * size);
+	ptr = malloc(xim * size);
 	if (ptr == NULL)
 		return (NULL);
 
-	while (i < (member * size))
+	while (i < (xim * size))
 	{
 		ptr[i] = 0;
 		i++;

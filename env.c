@@ -1,25 +1,25 @@
 #include "shell.h"
 /**
  * _getenv - gets env variable
- * @env_var: env variable
+ * @env: env variable
  * Return: value of env variable
  */
 
-char *_getenv(char *env_var)
+char *_getenv(char *env)
 {
 	int i = 0;
 	int j = 0;
-	int status;
+	int sit;
 
 	while (environ[i])
 	{
-		status = 1;
+		sit = 1;
 		for (j = 0; environ[i][j] != '='; j++)
 		{
 			if (environ[i][j] != env_var[j])
-				status = 0;
+				sit = 0;
 		}
-		if (status == 1)
+		if (sit == 1)
 			break;
 		i++;
 	}
@@ -27,9 +27,9 @@ char *_getenv(char *env_var)
 }
 
 /**
- * print_env - prints environment variables
+ * printe - prints environment variables
  */
-void print_env(void)
+void printe(void)
 {
 	int i = 0;
 

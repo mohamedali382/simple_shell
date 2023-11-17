@@ -9,15 +9,15 @@
 #include <unistd.h>
 extern char **environ;
 
-int empty_line(char *line);
-void print_env(void);
-char *_getenv(char *env_var);
-int _execute(char **args);
-void *_calloc(unsigned int member, unsigned int size);
 int _strlen(char *s);
 char *_strcat(char *dest, char *src);
+int empty_line(char *l);
 char **_split(char *str, char *separator);
+void printe(void);
+int exec(char **ag);
 char *_strcpy(char *dest, char *src);
+char *_getenv(char *env);
+void *_realloc(unsigned int xim, unsigned int size);
 char *search_path(char *cmd);
 int _strcmp(char *s1, char *s2);
 

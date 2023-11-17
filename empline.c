@@ -2,17 +2,17 @@
 
 /**
  * empty_line - checks if there is an empty line
- * @line: line to be checked
- * Return: 0 if there is no empty line or 1 if there is one
+ * @l: line to be checked
+ * Return: 0 or 1
  */
 
-int empty_line(char *line)
+int empty_line(char *l)
 {
 	int i = 0;
 
-	while (line[i] != '\0')
+	while (l[i] != '\0')
 	{
-		if (line[i] != ' ')
+		if (l[i] != ' ')
 			return (0);
 		i++;
 	}
