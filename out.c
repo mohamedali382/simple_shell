@@ -1,50 +1,47 @@
 #include "shell.h"
 /**
-* _strlen - string length
-* @args: args
-* Description: args to be measured
+* _strlen - count the string length
+* @ag: arguments
 * Return: number of characters
 */
-size_t _strlen(const char *args)
+size_t _strlen(const char *ag)
 {
 	size_t i = 0;
 
-	while (args[i])
+	while (ag[i])
 	{
 		i++;
 	}
 	return (i);
 }
 /**
-* _strcat - cat
-* @path: hello
-* @tmp: hello
-* Description: hellllllo
-* Return: new string
+* _strcat - concatenates two strings
+* @paths: 1st string
+* @temp: 2nd string
+* Return: 1st string
 */
-char *_strcat(char *path, const char *tmp)
+char *_strcat(char *paths, const char *temp)
 {
-	size_t length = _strlen(path);
+	size_t length = _strlen(paths);
 	size_t i;
 
-	for (i = 0; tmp[i] != '\0'; i++)
+	for (i = 0; temp[i] != '\0'; i++)
 	{
-		path[length + i] = tmp[i];
+		paths[length + i] = temp[i];
 	}
 
-	path[length + i] = '\0';
-	return (path);
+	paths[length + i] = '\0';
+	return (paths);
 }
 /**
-* _strdup - cat
-* @str: hello
-* Description: helllllloadf
+* _strdup - dup
+* @str: string
 * Return: new string
 */
 char *_strdup(const char *str)
 {
-	size_t len = _strlen(str), i = 0;
-	char *new_str = malloc((len + 1) * sizeof(char));
+	size_t length = _strlen(str), i = 0;
+	char *new_str = malloc((length + 1) * sizeof(char));
 
 	if (!new_str)
 	{
@@ -52,7 +49,7 @@ char *_strdup(const char *str)
 		exit(EXIT_FAILURE);
 	}
 
-	for (i = 0; i <= len; i++)
+	for (i = 0; i <= length; i++)
 	{
 		new_str[i] = str[i];
 	}

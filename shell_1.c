@@ -1,68 +1,67 @@
 #include "shell.h"
 /**
 * _CTD - check for errors
-* @length: length of string
-* @line: the line from user
-* Description: check for ending
+* @len: length of string
+* @l: the line from user
+* Return: void
 */
-void _CTD(ssize_t length, char *line)
+void _CTD(ssize_t len, char *l)
 {
-	(void) line;
-	if (length == -1)
+	(void) l;
+	if (len == -1)
 	{
 		if (isatty(STDIN_FILENO))
 		{
 			_putchar('\n');
-			free(line);
+			free(l);
 			exit(0);
 		}
 	}
 
 }
 /**
-* main - main
+* main - execute commands
 *
-* Description: shell that execute commands
-* Return: 0 for success
+* Return: 0
 */
 int main(void)
 {
-	char *line = '\0', **args, *envs, *fullpath;
-	struct linkp *direc;
+	ssize_t len;
+	char *line = '\0', *fullpath, **ag, *envirs;
 	size_t size = 0;
-	ssize_t length;
+	struct linkp *dir;
 
-	while (length != EOF)
+	while (len != EOF)
 	{
-		args = NULL;
-		envs = NULL;
+		ag = NULL;
+		envirs = NULL;
 		if (isatty(STDIN_FILENO))
 		{
-			printf("#cisfun$");
+			_putchar(' ');
 			_putchar(' ');
 		}
-		length = getline(&line, &size, stdin);
+		len = getline(&line, &size, stdin);
 		if (line[0] == '\n')
 			continue;
-		if (line[length - 1] == '\n')
-			(line[length - 1]) = '\0';
-		_CTD(length, line);
-		args = _strtok(line, " ");
-		envs = getenv("PATH");
-		direc = linkpath(envs);
-		fullpath = findexec(args[0], direc);
+		if (line[len - 1] == '\n')
+			(line[len - 1]) = '\0';
+		_CTD(len, line);
+		ag = _strtok(line, " ");
+		envirs = getenv("PATH");
+		dir = linkpath(envirs);
+		fullpath = findexec(ag[0], dir);
 		if (!fullpath)
 		{
 			perror("hsh");
 		}
 		if (fullpath)
 		{
-			free(args[0]);
-			args[0] = fullpath;
-			exec(args);
+			free(ag[0]);
+			ag[0] = fullpath;
+			exec(ag);
 		}
-		freeArgs(args);
-		freepath(direc);
+		freeArgs(ag);
+		freepath(dir);
 	}
 	free(line);
 	free(fullpath);

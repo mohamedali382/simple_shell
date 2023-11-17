@@ -4,8 +4,7 @@
 *adddir - directory storage
 *@head: head of list
 *@dir: name of directory
-*Description: store the names of directories
-*Return: the address of head with new node
+*Return: the address of head
 */
 struct linkp *adddir(struct linkp **head, char *dir)
 {
@@ -41,8 +40,7 @@ struct linkp *adddir(struct linkp **head, char *dir)
 /**
 * linkpath - store all path var
 * @envs: environment variable pass
-* Description: store all via linked list
-* Return: address of the first node
+* Return: address
 */
 struct linkp *linkpath(char *envs)
 {

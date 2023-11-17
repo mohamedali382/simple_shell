@@ -1,20 +1,20 @@
 #include "shell.h"
 /**
 * exec - execute
-* @args: the string that is have the path and arguments
-* Description: execute the program
+* @ag: string have the path and arguments
+* Return: void
 */
-void exec(char **args)
+void exec(char **ag)
 {
 	int st;
 	pid_t id;
 
-	if (!args || !args[0])
+	if (!ag || !ag[0])
 		return;
 	id = fork();
 	if (id == 0)
 	{
-		if (execve(args[0], args, environ) == -1)
+		if (execve(ag[0], ag, environ) == -1)
 		{
 			perror(getenv("_"));
 			exit(EXIT_FAILURE);

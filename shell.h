@@ -18,23 +18,23 @@ extern char **environ;
 */
 typedef struct linkp
 {
-	char *d;
 	struct linkp *p;
+	char *d;
 } linkp;
 
-void _CTD(ssize_t length, char *buff);
+void _CTD(ssize_t len, char *l);
 char **_strtok(char *token, const char *delim);
 struct linkp *adddir(struct linkp **head, char *dir);
 struct linkp *linkpath(char *envs);
+void exec(char **ag);
+char *_strcat(char *paths, const char *temp);
 char *findexec(char *args, struct linkp *head);
 struct linkp *free_list(struct linkp *path);
-void exec(char **args);
-void *_realloc(void *ptr, size_t size);
-void freeArgs(char **args);
+void *_realloc(void *ptrr, size_t size);
+void freeArgs(char **ag);
+size_t _strlen(const char *ag);
 struct linkp *freepath(struct linkp *path);
 int _putchar(char c);
-size_t _strlen(const char *args);
-char *_strcat(char *dest, const char *src);
 char *_strdup(const char *str);
 char *_strcpy(char *path, const char *src);
 #endif

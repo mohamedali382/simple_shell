@@ -3,7 +3,6 @@
 * _strtok - strtok for string
 * @tok: first string
 * @delim: second string
-* Description: strtok the string into string in 2d array
 * Return: address of new string
 */
 char **_strtok(char *tok, const char *delim)
@@ -44,32 +43,31 @@ char **_strtok(char *tok, const char *delim)
 	return (args);
 }
 /**
-* _realloc - prt
-* @ptr: pointer
+* _realloc - resize the array
+* @ptrr: pointer
 * @size: size
-* Description: reseize the array
-* Return: return the pointer
+* Return: pointer
 */
 
-void *_realloc(void *ptr, size_t size)
+void *_realloc(void *ptrr, size_t size)
 {
 	void *new_ptr;
 	size_t i;
 
 	if (size == 0)
 	{
-		free(ptr);
+		free(ptrr);
 		return (NULL);
 	}
 
-	if (ptr == NULL)
+	if (ptrr == NULL)
 		return (malloc(size));
 
 	new_ptr = malloc(size);
 
 	if (new_ptr != NULL)
 	{
-		char *old_ptr = (char *)ptr;
+		char *old_ptr = (char *)ptrr;
 		char *new_ptr_char = (char *)new_ptr;
 		size_t copy_size = size;
 		size_t old_size = 0;
@@ -89,23 +87,23 @@ void *_realloc(void *ptr, size_t size)
 			new_ptr_char[i] = old_ptr[i];
 		}
 
-		free(ptr);
+		free(ptrr);
 	}
 
 	return (new_ptr);
 }
 /**
-* freeArgs - freee
-* @args: freeeeeeeeeeeee
-* Description: free all strings
+* freeArgs - free the memory lack
+* @ag: arguments
+* Return: void
 */
-void freeArgs(char **args)
+void freeArgs(char **ag)
 {
 	size_t i = 0;
 
-	for (i = 0; args[i] != NULL; i++)
+	for (i = 0; ag[i] != NULL; i++)
 	{
-		free(args[i]);
+		free(ag[i]);
 	}
-	free(args);
+	free(ag);
 }

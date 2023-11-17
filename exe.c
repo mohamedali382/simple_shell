@@ -1,41 +1,40 @@
 #include "shell.h"
 /**
-* findexec - hello
-* @args: makan
+* findexec - fing th executive command
+* @args: arguments
 * @head: struct
-* Description: lsdfasdff
 * Return: path of variable
 */
 char *findexec(char *args, struct linkp *head)
 {
 	struct stat st;
-	char *path;
-	char *dent;
+	char *paths;
+	char *dents;
 	struct linkp *tmp = head;
 
 	while (tmp)
 	{
 		size_t i = 0;
 
-		dent = _strdup(tmp->d);
+		dents = _strdup(tmp->d);
 		if (args[0] == '/')
 		{
-			path = _strdup(args);
-			return (path);
+			paths = _strdup(args);
+			return (paths);
 		}
-		path = malloc(sizeof(char) * 2 + _strlen(tmp->d) + _strlen(args));
+		paths = malloc(sizeof(char) * 2 + _strlen(tmp->d) + _strlen(args));
 		for (i = 0; i < _strlen(tmp->d); i++)
 		{
-			path[i] = dent[i];
+			paths[i] = dents[i];
 		}
-		path[i] = '\0';
-		_strcat(path, "/");
-		_strcat(path, args);
-		if (stat(path, &st) == 0)
+		paths[i] = '\0';
+		_strcat(paths, "/");
+		_strcat(paths, args);
+		if (stat(paths, &st) == 0)
 		{
-			return (path);
+			return (paths);
 		}
-		free(path);
+		free(paths);
 		tmp = tmp->p;
 	}
 	return (NULL);
