@@ -16,7 +16,7 @@ char *_getenv(char *env)
 		sit = 1;
 		for (j = 0; environ[i][j] != '='; j++)
 		{
-			if (environ[i][j] != env_var[j])
+			if (environ[i][j] != env[j])
 				sit = 0;
 		}
 		if (sit == 1)
