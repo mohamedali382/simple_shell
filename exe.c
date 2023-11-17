@@ -1,41 +1,31 @@
 #include "shell.h"
+
 /**
-* findexec - fing th executive command
-* @args: arguments
-* @head: struct
-* Return: path of variable
-*/
-char *findexec(char *args, struct linkp *head)
+ * _execute - execute command path
+ * @args: array of arguments
+ * Return: exit status
+ */
+
+int _execute(char **args)
 {
-	struct stat st;
-	char *paths;
-	char *dents;
-	struct linkp *tmp = head;
+	int id = fork();
+	int st;
 
-	while (tmp)
+	if (id == 0)
 	{
-		size_t i = 0;
-
-		dents = _strdup(tmp->d);
-		if (args[0] == '/')
+		/*execute the command*/
+		if (execve(args[0], args, environ) == -1)
 		{
-			paths = _strdup(args);
-			return (paths);
+			perror("Error");
 		}
-		paths = malloc(sizeof(char) * 2 + _strlen(tmp->d) + _strlen(args));
-		for (i = 0; i < _strlen(tmp->d); i++)
-		{
-			paths[i] = dents[i];
-		}
-		paths[i] = '\0';
-		_strcat(paths, "/");
-		_strcat(paths, args);
-		if (stat(paths, &st) == 0)
-		{
-			return (paths);
-		}
-		free(paths);
-		tmp = tmp->p;
 	}
-	return (NULL);
+	else
+	{
+		/*parent process wait for the child*/
+		wait(&st);
+		if (WIFEXITED(st))
+			st = WEXITSTATUS(st);
+	}
+
+	return (st);
 }
