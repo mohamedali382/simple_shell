@@ -50,7 +50,7 @@ char **_split(char *str, char *separator)
 	int i = 0;
 
 	token = strtok(str, separator);
-	split_str = (char **)_calloc(100, sizeof(char *));
+	split_str = (char **)_realloc(100, sizeof(char *));
 
 	if (!split_str)
 	{
