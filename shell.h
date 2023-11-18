@@ -10,12 +10,7 @@
 extern char **environ;
 
 int _strlen(char *s);
-void _exit_(char **command);
 char *_strcat(char *dest, char *src);
-void _cd(char **command);
-void _env(__attribute__((unused)) char **command);
-void _setenv(char **command);
-void _unsetenv(char **command);
 int empty_line(char *l);
 char **_split(char *str, char *separator);
 void printe(void);
